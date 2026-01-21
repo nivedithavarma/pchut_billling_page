@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCHUT Computers - Project Estimator</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Kaushan+Script&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --banner-blue: #0011cc;
+            --banner-cyan: #00d2ff;
+            --brand-yellow: #ffcc00;
+            --brand-red: #ff0055;
+            --form-bg: #f4f7f6;
+            --primary-text: #2c3e50;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--form-bg);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* --- HEADER STYLES (INCREASED SIZE) --- */
+        .main-header {
+            background-color: var(--banner-blue);
+            color: white;
+            padding: 25px 0; /* Slightly more vertical padding */
+            display: flex;
+            justify-content: center; 
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 70px; /* Adjusted gap for larger elements */
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon {
+            font-size: 65px; /* Increased from 50px */
+            margin-right: 20px;
+            color: white;
+            text-shadow: 2px 2px 0px #000;
+        }
+
+        .brand-name {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .brand-title {
+            font-family: 'Anton', sans-serif;
+            font-size: 85px; /* Increased from 60px */
+            color: var(--brand-yellow);
+            letter-spacing: 2px;
+            line-height: 0.9;
+            text-shadow: 4px 4px 0px #cc4400, 5px 5px 6px rgba(0,0,0,0.5);
+            font-style: italic;
+        }
+
+        .brand-subtitle {
+            font-family: 'Kaushan Script', cursive;
+            font-size: 42px; /* Increased from 35px */
+            color: white;
+            background: var(--brand-red);
+            padding: 3px 18px;
+            border-radius: 6px;
+            margin-top: -8px;
+            transform: rotate(-3deg);
+            box-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            border: 2px solid white;
+        }
+
+        .contact-section {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; 
+            font-weight: bold;
+            font-size: 18px; /* Increased text size */
+        }
+
+        .contact-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            background: rgba(0,0,0,0.25);
+            padding: 6px 15px;
+            border-radius: 5px;
+        }
+
+        .contact-row i {
+            margin-right: 12px;
+            font-size: 22px;
+            width: 25px; 
+            text-align: center;
+        }
+
+        .phone-highlight {
+            font-size: 32px; /* Increased from 26px */
+            color: var(--brand-yellow);
+            font-family: 'Anton', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .address-bar {
+            background-color: var(--banner-cyan);
+            color: #000;
+            text-align: center;
+            padding: 12px;
+            font-weight: bold;
+            font-size: 16px;
+            border-bottom: 1px solid #aaa;
+            text-transform: uppercase;
+        }
+
+        /* --- MIDDLE CONTAINER --- */
+        .container {
+            max-width: 700px; 
+            margin: 30px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .form-header h2 { 
+            margin: 0 0 20px 0; 
+            color: var(--primary-text); 
+            font-size: 28px; 
+            text-align: center;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 15px;
+        }
+
+        .form-group { margin-bottom: 18px; }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary-text);
+            font-size: 16px;
+        }
+
+        input[type="number"], select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 17px;
+            box-sizing: border-box;
+        }
+
+        .result-box {
+            background-color: var(--banner-blue);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .result-box h2 { margin: 0; font-size: 18px; font-weight: 400; letter-spacing: 1px;}
+        .result-box .price { font-size: 48px; font-weight: bold; margin: 10px 0; color: var(--brand-yellow); }
+
+        .breakdown {
+            margin-top: 20px;
+            font-size: 15px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+        
+        .breakdown-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        /* --- FOOTER --- */
+        .shop-footer {
+            background: white;
+            border-top: 4px solid var(--banner-blue);
+            padding: 20px 10px;
+            display: flex;
+            justify-content: center; 
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            max-width: 900px;
+            margin: 20px auto 40px auto;
+        }
+
+        .footer-img-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-img-container img {
+            max-height: 160px;
+            width: auto;
+            max-width: 200px;
+            object-fit: contain;
+        }
+
+        .footer-label {
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 8px;
+            color: #555;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 800px) {
+            .main-header { flex-direction: column; gap: 30px; text-align: center; }
+            .brand-name { align-items: center; }
+            .contact-section { align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo-section">
+            <i class="fas fa-laptop-house logo-icon"></i>
+            <div class="brand-name">
+                <div class="brand-title">PCHUT</div>
+                <div class="brand-subtitle">Digitals</div>
+            </div>
+        </div>
+        
+        <div class="contact-section">
+            <div class="contact-row">
+                <i class="fas fa-envelope" style="color: #ea4335;"></i>
+                <span>pchutgold5@gmail.com</span>
+            </div>
+            <div class="contact-row">
+                <i class="fas fa-phone-alt" style="color: #34a853;"></i>
+                <span class="phone-highlight">9397110272</span>
+            </div>
+            <div class="contact-row">
+                <i class="fab fa-whatsapp" style="color: #25d366;"></i>
+                <span class="phone-highlight">8977238288</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="address-bar">
+        Near Coastal Bank, Opp. M.R.O. Office Road, BHIMAVARAM-1, W.G.Dist.
+    </div>
+
+    <div class="container">
+        <div class="form-header">
+            <h2>Project Estimator</h2>
+        </div>
+
+        <form id="estimatorForm">
+            <div class="form-group">
+                <label>Standard B&W Pages (Rs. 2 / page)</label>
+                <input type="number" id="bwPages" min="0" value="0" oninput="calculateTotal()">
+            </div>
+
+            <div class="form-group">
+                <label>Color Pages (Rs. 6 / page)</label>
+                <input type="number" id="colorPages" min="0" value="0" oninput="calculateTotal()">
+            </div>
+
+            <div class="form-group">
+                <label>OHP Transparent Sheets (Rs. 3 / sheet)</label>
+                <input type="number" id="ohpSheets" min="0" value="0" oninput="calculateTotal()">
+            </div>
+
+            <div class="form-group">
+                <label>Binding Selection</label>
+                <select id="bindingType" onchange="calculateTotal()">
+                    <option value="100">Normal Project Binding (Rs. 100)</option>
+                    <option value="200">Gold Embossed Binding (Rs. 200)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Total Number of Books Required</label>
+                <input type="number" id="bookCount" min="1" value="1" oninput="calculateTotal()">
+            </div>
+        </form>
+
+        <div class="result-box">
+            <h2>TOTAL ESTIMATION</h2>
+            <div class="price">Rs. <span id="totalAmount">0</span>/-</div>
+        </div>
+
+        <div class="breakdown" id="breakdownSection"></div>
+    </div>
+
+    <div class="shop-footer">
+        <div class="footer-img-container">
+            <img src="backgroundImageUncleProject.scanner.jpg" alt="Scan to Pay">
+            <div class="footer-label">Scan to Pay</div>
+        </div>
+
+        <div class="footer-img-container">
+            <img src="backgroundImageUncleProject.middle.jpg" alt="Payment Details">
+            <div class="footer-label">Payments</div>
+        </div>
+
+        <div class="footer-img-container">
+            <img src="backgroundImageUncleProject.address.jpg" alt="Store Location">
+            <div class="footer-label">Our Address</div>
+        </div>
+    </div>
+
+    <script>
+        function calculateTotal() {
+            const bwPages = parseFloat(document.getElementById('bwPages').value) || 0;
+            const colorPages = parseFloat(document.getElementById('colorPages').value) || 0;
+            const ohpSheets = parseFloat(document.getElementById('ohpSheets').value) || 0;
+            const bindingCost = parseFloat(document.getElementById('bindingType').value) || 0;
+            const bookCount = parseFloat(document.getElementById('bookCount').value) || 1;
+
+            const rateBW = 2;
+            const rateColor = 6;
+            const rateOHP = 3;
+
+            const costPerBook = (bwPages * rateBW) + (colorPages * rateColor) + (ohpSheets * rateOHP) + bindingCost;
+            const grandTotal = costPerBook * bookCount;
+
+            document.getElementById('totalAmount').innerText = grandTotal.toFixed(0);
+
+            const breakdownHTML = `
+                <div class="breakdown-row"><span>Unit Cost (1 Book):</span> <span>Rs. ${costPerBook}</span></div>
+                <div class="breakdown-row"><span>Quantity:</span> <span>${bookCount} Books</span></div>
+                <div class="breakdown-row" style="font-weight:bold; margin-top:5px; color:#0011cc;"><span>Grand Total:</span> <span>Rs. ${grandTotal}</span></div>
+            `;
+            document.getElementById('breakdownSection').innerHTML = breakdownHTML;
+        }
+        calculateTotal();
+    </script>
+</body>
+</html>
